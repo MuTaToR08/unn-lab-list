@@ -1,0 +1,11 @@
+#pragma once
+
+
+enum ListException
+{
+	SIZE_EXCEPTION = 1,
+	OVERFLOW_EXCEPTION,
+	INDEX_ERROR_EXCEPTION,
+	UNKONW_EXCEPTION
+
+};
