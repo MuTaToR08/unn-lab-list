@@ -31,8 +31,8 @@ public:
 		delete[] links;
 		delete[] data;
 	}
-
 	virtual void add(E e);
+	virtual void add(E e, bool inStart);
 	virtual void clear();
 	virtual bool contains(E e);
 	virtual E get(size_t index);
@@ -44,28 +44,43 @@ public:
 	virtual E* toArray();
 };
 
+
 template<class E>
 void ArrayList<E>::add(E e)
 {
+	add(e, false);
+}
+
+template<class E>
+void ArrayList<E>::add(E e, bool inStart)
+{
 	if (count == sizeArr)
 		throw OVERFLOW_EXCEPTION;
-
+	size_t index = -1;
 	if (count == 0)
-		start = end = 0;
+		index = start = end = 0;
 	else
 	{
-		for (size_t i = 0; i < sizeArr;i++)
+		for (size_t i = 0; i < sizeArr; i++)
 		{
 			if (links[i] == -1)
 			{
-				links[end] = i;
-				end = i;
+				if (inStart)
+				{
+					links[i] = start;
+					start = i;
+				}
+				else {
+					links[end] = i;
+					end = i;
+				}
+				index = i;
 				break;
 			}
 		}
 	}
+	data[index] = e;
 	links[end] = start;
-	data[end] = e;
 	++count;
 }
 
@@ -169,7 +184,7 @@ void ArrayList<E>::remove(size_t index)
 			links[i] = -1;
 			break;
 		}
-		prev = links[i];
+		prev = i;
 	}
 	--count;
 }

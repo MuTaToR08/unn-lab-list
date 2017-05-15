@@ -9,15 +9,16 @@ using namespace std;
 
 int main()
 {
-	LinkedList<int> tested;
+	ArrayList<int> tested(50);
 
 
 	tested.add(100); 
 	tested.add(50);
 	tested.add(70);
+	tested.add(12,true);
 	//tested.add(89);
 	//cout <<  << endl;
-	//tested.set(1,25);
+	tested.set(1,25);
 	tested.remove(2);
 	cout << tested.isEmpty()<<endl;
 	int *arr = tested.toArray();
