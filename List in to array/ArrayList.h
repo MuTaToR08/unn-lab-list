@@ -42,6 +42,17 @@ public:
 	virtual void set(size_t index, E e);
 	virtual size_t size();
 	virtual E* toArray();
+
+
+	void firstDelete()
+	{
+		remove(0);
+	}
+	void lastDelete()
+	{
+		remove(count - 1);
+	}
+
 };
 
 
